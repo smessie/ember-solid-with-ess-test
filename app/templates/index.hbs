@@ -1,0 +1,28 @@
+{{page-title "Products"}}
+
+<div class="container">
+  <div class="row">
+    <h1>Products</h1>
+    {{#each this.model as |product|}}
+      <div class="col-md-4 col-xl-3">
+        <div class="card overview-card">
+          {{# if product.image }}
+            <img class="card-img-top" src="{{product.image}}/download" alt="{{product.name}}">
+          {{/ if }}
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+            <button type="button" class="btn btn-danger" {{ on "click" (fn this.removeProduct product) }}>Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<br>
+<div class="container">
+  <LinkTo @route="new" class="btn btn-success">Add product</LinkTo>
+</div>
+{{outlet}}
